@@ -1,0 +1,22 @@
+<div>
+  <table>
+    <tr>
+      <!-- <th>*</th> -->
+      <th>Process</th>
+      <th>Arrival Time</th>
+      <th>Execute Time</th>
+      <th>Service Time</th>
+      <th>Priority</th>
+      <th>Quantum</th>
+    </tr>
+    <tr *ngFor="let process of processes">
+      <!-- <input type="button" (click)="onDelete(process)"> -->
+      <td>{{process.id}}</td>
+      <td>{{process.arrival_t}}</td>
+      <td>{{process.execute_t}}</td>
+      <td>{{process.service_t}}</td>
+      <td>{{process.priority}}</td>
+      <td>{{process.quantum}}</td>
+    </tr>
+  </table>
+</div>
