@@ -1,19 +1,126 @@
-<!-- <h2>Timer</h2>
-<p>## section for the timer</p>
-<h2>Algorithm</h2>
-<button (click)="fcfs()">FCFS</button>
-<button (click)="sjn()">SJN</button>
-<button (click)="pbs()">PBS</button>
-<button (click)="rrs()">RRS</button> -->
-<app-process></app-process>
-<router-outlet></router-outlet>
-<!-- <h2>Executing</h2>
-<app-table [processes]="process_exec" ></app-table>
-<br>
-<h2>Finished</h2>
-<app-table [processes]="process_finish"></app-table>
+<!-- <div class="container">
+  <h2>Recourses</h2>
+  <button (click)="resources()">ADD RECOURCES</button>
+  <h2>Timer</h2>
+  <h2>Algorithm</h2>
+  <button (click)="algorithm('fcfs')"> FCFS</button>
+  <button (click)="algorithm('sjn')"> SJN</button>
+  <button (click)="algorithm('pbs')"> PBS</button>
+  <h2>Executing</h2>
+  <app-table [processes]="process_exec"></app-table>
+  <h2>Finished</h2>
+  <app-table [processes]="process_finish"></app-table>
+  <br>
+  <app-progressbar [width]=progress></app-progressbar>
+  <router-outlet></router-outlet>  
+</div>
 
-<br> -->
 
+ -->
+<div class="w3-content w3-margin-top" style="max-width:1000px;">
 
+  <!-- The Grid -->
+  <div class="w3-row-padding">
+  
+    <!-- Left Column -->
+    <div class="w3-third">
+      <div class="w3-white w3-text-grey w3-card-4">
+        <div class="w3-container">
+          <br>
+          <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Process</b></p>
+            <br>
+            <label>Name</label>
+            <input class="w3-input" type="text" #name>
+            <br>
+            <label>Execute Time</label>
+            <input class="w3-input" type="text" #execute_t>
+            <br>
+            <label>Priority</label>
+            <input class="w3-input" type="text" #priority>
+            <br>
+          <button class="w3-button w3-hover-black" (click)="addProcess(name.value,execute_t.value,priority.value)">Add Process</button><br>
+          <br>
+        </div>
+      </div><br>
+      
+      <div class="w3-white w3-text-grey w3-card-4">
+        <div class="w3-container">
+          <br>
+          <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Timer</b></p>
+          <h4 class="w3-text-teal"><i class="fa fa-clock-o fa-fw w3-margin-right"></i>{{parseTime(time)}}</h4><br>
+          <p class="w3-large w3-text-theme"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Scheduler</b></p>
+          <button class="w3-button w3-hover-black" (click)="startTimer(processor.value,threads.value,speed.value)">START</button>
+          <button class="w3-button w3-hover-black" (click)="stopTimer()">STOP</button><br>
+          <br>
+        </div>
+      </div><br>
 
+      <div class="w3-white w3-text-grey w3-card-4">
+        <div class="w3-container">
+          <br>
+          <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Current Process</b></p>
+          <app-progressbar [width]=progress [name]=current_p></app-progressbar>
+          <br>
+          <p class="w3-large w3-text-theme"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Waiting Process</b></p>
+          <div *ngFor="let p of process_exec" >
+              <div *ngIf="p.id != current_p">
+                  <p>Name: {{p.id}}</p>
+                  <div class="w3-light-grey w3-round-xlarge">
+                    <div class="w3-round-xlarge w3-teal" style="height:24px;width:100%"></div>
+                  </div>
+              </div>
+          </div>
+          <br>
+        </div>
+      </div><br>
+
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Right Column -->
+    
+    <div class="w3-twothird">
+      <div class="w3-white w3-text-grey w3-card-4">
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"></h2>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>Algorithms: </b>
+            <button class="w3-button w3-hover-black" (click)="algorithm('fcfs')"> FCFS</button>
+            <button class="w3-button w3-hover-black" (click)="algorithm('sjn')"> SJN</button>
+            <button class="w3-button w3-hover-black" (click)="algorithm('pbs')"> PBS</button>
+          </h5>
+          <h5 class="w3-opacity"><b>Processors: 
+              <input type="number" name="quantity" min="1" max="4" value="1" #processor>
+          </b></h5>
+          <h5 class="w3-opacity"><b>Threads: 
+              <input type="number" name="quantity" min="1" max="4" value="1" #threads> 
+          </b></h5>
+          <h5 class="w3-opacity"><b>Speed: 
+              <input type="range" min="1" max="4" value="1" #speed>
+          </b></h5>
+          <hr>
+        </div>
+      </div>
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+          <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Scheduler</h2>
+          <div class="w3-container">
+            <app-table [processes]="process_exec"></app-table>
+            <hr>
+          </div>
+        </div>
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Finished</h2>
+        <div class="w3-container">
+          <div class="w3-container">
+            <app-table [processes]="process_finish"></app-table>
+            <hr>
+          </div>
+        </div>
+      </div>
+    <!-- End Right Column -->
+    </div>
+  </div>
+  <!-- End Grid -->
+  </div>
+  <!-- End Page Container -->
+</div>
