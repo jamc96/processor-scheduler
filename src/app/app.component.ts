@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Process } from './Process';
-import { PROCESSES } from './mock-process';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +19,6 @@ export class AppComponent {
   current_p: string = 'n/a';
   // default methods
   addProcess(name: string, execute_t: number = 10, priority: number = 1){
-    console.log(name,execute_t);
     if (this.process_exec.length){
       var next = this.process_exec.length;
       this.process_exec.push({id: name,execute_t: execute_t,arrival_t: next,priority:priority})
@@ -55,9 +53,6 @@ export class AppComponent {
           break;
       }
     }
-  }
-  resources(){
-    alert('INGE NUNCA SUPE QUE ERAN LOS RECURSOS PERO DEJE EL BOTON POR SI ACASO');
   }
   startTimer(processor: number,threads: number, speed: number) {
       this.interval = setInterval(() => {
