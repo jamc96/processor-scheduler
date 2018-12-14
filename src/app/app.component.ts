@@ -20,7 +20,10 @@ export class AppComponent {
   progress: number = 0;
   current_p: string = 'n/a';
   // default methods
-  addProcess(name: string, execute_t: number = 10, priority: number = 1){
+  addProcess(){
+    const name = "process_" + this.process.length.toString();
+    const execute_t = Math.floor(Math.random() * 100) + 10;
+    const priority = Math.floor(Math.random() * 10) + 1;
     const selectedResource = this.selectRandomResources();
     if (this.process_exec.length){
       var next = this.process_exec.length;
