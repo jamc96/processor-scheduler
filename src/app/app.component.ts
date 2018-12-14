@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Process } from './Process';
+import { Resource } from './Resource';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ export class AppComponent {
   process_finish: Process[] = [];
   process_waiting: Process[] = [];
   process: Process[] = [];
+  resources: Resource[] = [];
   time: number = 0;
   r_time: number = 0;
   progress: number = 0;
@@ -90,5 +92,15 @@ export class AppComponent {
     ret += "" + mins + ":" + (secs < 10 ? "0" : "");
     ret += "" + secs;
     return ret;
+  }
+  addResource() : Resource {
+    const name = this.resources.length.toString();    
+    const expropriative = Math.floor(Math.random() * 2) + 1 == 1
+    const maxUsages = expropriative ? 1 : Math.floor(Math.random() * 3) + 1;
+
+    const newResource = new Resource(name, expropriative, maxUsages)
+    this.resources.push(newResource);
+
+    return newResource;
   }
 }
