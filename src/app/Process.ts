@@ -1,4 +1,5 @@
 import { Optional } from "@angular/core";
+import { Resource } from './Resource';
 
 export class Process {
     id: string;
@@ -7,4 +8,5 @@ export class Process {
     service_t?: number;
     priority?: number;
     quantum?: number;
+    resource?: string;
 }

@@ -21,11 +21,12 @@ export class AppComponent {
   current_p: string = 'n/a';
   // default methods
   addProcess(name: string, execute_t: number = 10, priority: number = 1){
+    const selectedResource = this.selectRandomResources();
     if (this.process_exec.length){
       var next = this.process_exec.length;
-      this.process_exec.push({id: name,execute_t: execute_t,arrival_t: next,priority:priority})
+      this.process_exec.push({id: name,execute_t: execute_t,arrival_t: next,priority:priority, resource: selectedResource})
     }else {
-      this.process_exec.push({id: name,execute_t: execute_t,arrival_t: 0,priority:priority});
+      this.process_exec.push({id: name,execute_t: execute_t,arrival_t: 0,priority:priority, resource: selectedResource});
     }
     return false;
   }
@@ -102,5 +103,12 @@ export class AppComponent {
     this.resources.push(newResource);
 
     return newResource;
+  }
+  private selectRandomResources(): string {
+    if (this.resources.length == 0) {
+      return "";
+    }
+
+    return this.resources[Math.floor(Math.random() * this.resources.length - 1)].name;
   }
 }
