@@ -1,0 +1,16 @@
+<div>
+  <table class="w3-table w3-striped w3-border">
+    <tr>
+      <!-- <th>*</th> -->
+      <th>Resource</th>
+      <th>Expropiative</th>
+      <th>Max Usage</th>
+    </tr>
+    <tr *ngFor="let resource of resources">
+      <!-- <input type="button" (click)="onDelete(resource)"> -->
+      <td>{{resource.name}}</td>
+      <td>{{resource.expropriative}}</td>
+      <td>{{resource.maxUsages}}</td>
+    </tr>
+  </table>
+</div>

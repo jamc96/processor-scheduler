@@ -7,12 +7,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { TableComponent } from './table/table.component';
 import { ProgressbarComponent } from './progressbar/progressbar.component';
+import { TableResourceComponent } from './table-resource/table-resource.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TableComponent,
     ProgressbarComponent,
+    TableResourceComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 export class Resource {
     name: string;
-    expropriative: number;
+    expropriative: boolean;
     maxUsages: number;
 }

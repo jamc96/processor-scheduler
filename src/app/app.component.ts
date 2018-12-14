@@ -98,7 +98,7 @@ export class AppComponent {
     const expropriative = Math.floor(Math.random() * 2) + 1 == 1
     const maxUsages = expropriative ? 1 : Math.floor(Math.random() * 3) + 1;
 
-    const newResource = { name: name, expropriative: (expropriative ? 1 : 0), maxUsages: maxUsages };
+    const newResource = { name: name, expropriative: expropriative, maxUsages: maxUsages };
     this.resources.push(newResource);
 
     return newResource;
