@@ -6,14 +6,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { TableComponent } from './table/table.component';
-import { ProcessComponent } from './process/process.component';
 import { ProgressbarComponent } from './progressbar/progressbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TableComponent,
-    ProcessComponent,
     ProgressbarComponent,
   ],
   imports: [
