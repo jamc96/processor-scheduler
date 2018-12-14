@@ -112,6 +112,7 @@ export class AppComponent {
       return "";
     }
 
-    return this.resources[Math.floor(Math.random() * this.resources.length - 1)].name;
+    console.log()
+    return this.resources[Math.floor(Math.random() * (this.resources.length - 1))].name;
   }
 }
