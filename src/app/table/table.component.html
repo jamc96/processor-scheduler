@@ -6,6 +6,7 @@
       <th>Arrival Time</th>
       <th>Execute Time</th>
       <th>Priority</th>
+      <th>Resource</th>
     </tr>
     <tr *ngFor="let process of processes">
       <!-- <input type="button" (click)="onDelete(process)"> -->
@@ -13,6 +14,7 @@
       <td>{{process.arrival_t}}</td>
       <td>{{process.execute_t}}</td>
       <td>{{process.priority}}</td>
+      <td>{{process.resource}}</td>
     </tr>
   </table>
 </div>
