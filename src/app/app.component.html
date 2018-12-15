@@ -81,21 +81,28 @@
       <div class="w3-container w3-card w3-white w3-margin-bottom">
         <h2 class="w3-text-grey w3-padding-16"></h2>
         <div class="w3-container">
-          <h5 class="w3-opacity"><b>Algorithms: </b>
+          <h5 class="w3-opacity"><b>Process Algorithm: </b>
             <button class="w3-button w3-hover-black" (click)="algorithm('fcfs')"> FCFS</button>
             <button class="w3-button w3-hover-black" (click)="algorithm('sjn')"> SJN</button>
             <button class="w3-button w3-hover-black" (click)="algorithm('pbs')"> PBS</button>
           </h5>
+          <hr>
           <h5 class="w3-opacity"><b>Processors: 
               <input type="number" name="quantity" min="1" max="4" value="1" #processor>
           </b></h5>
+          <hr>
           <h5 class="w3-opacity"><b>Threads: 
               <input type="number" name="quantity" min="1" max="4" value="1" #threads> 
           </b></h5>
+          <hr>
           <h5 class="w3-opacity"><b>Speed: 
               <input type="range" min="1" max="4" value="1" #speed>
           </b></h5>
           <hr>
+          <h5 class="w3-opacity"><b>Paging Algorithm: </b>
+            <button class="w3-button w3-hover-black" (click)="setPagingAlgorithm('fcfs')"> FCFS</button>
+            <button class="w3-button w3-hover-black" (click)="setPagingAlgorithm('opt')"> OPT</button>
+          </h5>
         </div>
       </div>
       <div class="w3-container w3-card w3-white w3-margin-bottom">
