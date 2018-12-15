@@ -20,6 +20,7 @@ export class AppComponent {
   r_time: number = 0;
   progress: number = 0;
   current_p: string = 'n/a';
+  pagingAlgorithm: string = 'FCFS';
   frames: Frame[] = [
     { id: 'frame_0', resource: '' },
     { id: 'frame_1', resource: '' },
@@ -112,6 +113,9 @@ export class AppComponent {
     this.resources.push(newResource);
 
     return newResource;
+  }
+  setPagingAlgorithm(algorithm: string) {
+    this.pagingAlgorithm = algorithm;
   }
   private selectRandomResources(): string {
     if (this.resources.length == 0) {
