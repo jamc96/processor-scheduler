@@ -20,7 +20,7 @@ export class AppComponent {
   r_time: number = 0;
   progress: number = 0;
   current_p: string = 'n/a';
-  pagingAlgorithm: string = 'FCFS';
+  pagingAlgorithm: string = 'fcfs';
   frames: Frame[] = [
     { id: 'frame_0', resource: '' },
     { id: 'frame_1', resource: '' },
@@ -96,14 +96,14 @@ export class AppComponent {
       return;
     }
 
-    if (this.pagingAlgorithm == "FCFS") {
+    if (this.pagingAlgorithm == "fcfs") {
       const frame = this.frames.pop();
       frame.resource = nextResource;
       this.frames.unshift(frame);
       return;
     }
 
-    if (this.pagingAlgorithm == "OPT") {
+    if (this.pagingAlgorithm == "opt") {
       const markedResources: string[] = [];
       for (let process of this.process_exec) {
         if (markedResources.indexOf(process.resource) > 0) {
