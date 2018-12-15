@@ -27,7 +27,7 @@ export class AppComponent {
     { id: 'frame_2', resource: '' },
   ];
   // default methods
-  addProcess(){
+  addProcess(resource: string){
     const name = "process_" + this.process_exec.length.toString();
     const execute_t = Math.floor(Math.random() * 10) + 1;
     const priority = Math.floor(Math.random() * 10) + 1;
@@ -97,7 +97,7 @@ export class AppComponent {
     }
 
     if (this.pagingAlgorithm == "FCFS") {
-      const frame = this.frames.pop();
+      const frame = this.frames.shift();
       frame.resource = nextResource;
       this.frames.push(frame);
       return;
