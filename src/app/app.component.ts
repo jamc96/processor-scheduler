@@ -102,6 +102,23 @@ export class AppComponent {
       this.frames.push(frame);
       return;
     }
+
+    if (this.pagingAlgorithm == "OPT") {
+      const markedResources: string[] = [];
+      for (let process of this.process_exec) {
+        if (markedResources.indexOf(process.resource) > 0) {
+          markedResources.push(process.resource);
+        } 
+      }
+
+      if (markedResources.length > 0) {
+        const farthestResource = markedResources[markedResources.length - 1];
+        const frame = this.frames.find((frame) => frame.resource == farthestResource);
+        if (frame) {
+          frame.resource = nextResource;
+        }
+      }
+    }
   }
   private findNextUpdatableFrame() {
   }
