@@ -97,9 +97,9 @@ export class AppComponent {
     }
 
     if (this.pagingAlgorithm == "FCFS") {
-      const frame = this.frames.shift();
+      const frame = this.frames.pop();
       frame.resource = nextResource;
-      this.frames.push(frame);
+      this.frames.unshift(frame);
       return;
     }
 
