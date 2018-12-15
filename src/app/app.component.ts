@@ -106,17 +106,20 @@ export class AppComponent {
     if (this.pagingAlgorithm == "opt") {
       const markedResources: string[] = [];
       for (let process of this.process_exec) {
-        if (markedResources.indexOf(process.resource) > 0) {
+        if (markedResources.indexOf(process.resource) < 0 
+            && this.frames.find((frame) => frame.resource == process.resource)) {
           markedResources.push(process.resource);
         } 
       }
 
-      if (markedResources.length > 0) {
+      if (markedResources.length) {
         const farthestResource = markedResources[markedResources.length - 1];
         const frame = this.frames.find((frame) => frame.resource == farthestResource);
         if (frame) {
           frame.resource = nextResource;
         }
+      } else {
+        this.frames[0].resource = nextResource;
       }
     }
   }
