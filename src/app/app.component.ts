@@ -72,6 +72,9 @@ export class AppComponent {
         if (this.process_exec.length){
           this.time += 1;
           this.r_time += processor*threads;
+          if (this.current_p == null || this.current_p != this.process_exec[0].id) {
+            this.updatePaging();
+          }
           this.current_p = this.process_exec[0].id;
           this.progress = Math.round((this.r_time/this.process_exec[0].execute_t)*100);
           this.progress = this.progress > 100 ? 100 : this.progress;
@@ -86,6 +89,21 @@ export class AppComponent {
   }
   stopTimer() {
     clearInterval(this.interval);
+  }
+  updatePaging() {
+    const nextResource = this.process_exec[0].resource;
+    if (this.frames.find((frame) => frame.resource == nextResource)) {
+      return;
+    }
+
+    if (this.pagingAlgorithm == "FCFS") {
+      const frame = this.frames.pop();
+      frame.resource = nextResource;
+      this.frames.push(frame);
+      return;
+    }
+  }
+  private findNextUpdatableFrame() {
   }
   parseTime(time: number){
     // Hours, minutes and seconds
