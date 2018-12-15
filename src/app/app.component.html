@@ -1,23 +1,4 @@
-<!-- <div class="container">
-  <h2>Recourses</h2>
-  <button (click)="resources()">ADD RECOURCES</button>
-  <h2>Timer</h2>
-  <h2>Algorithm</h2>
-  <button (click)="algorithm('fcfs')"> FCFS</button>
-  <button (click)="algorithm('sjn')"> SJN</button>
-  <button (click)="algorithm('pbs')"> PBS</button>
-  <h2>Executing</h2>
-  <app-table [processes]="process_exec"></app-table>
-  <h2>Finished</h2>
-  <app-table [processes]="process_finish"></app-table>
-  <br>
-  <app-progressbar [width]=progress></app-progressbar>
-  <router-outlet></router-outlet>  
-</div>
-
-
- -->
-<div class="w3-content w3-margin-top" style="max-width:1000px;">
+<div class="w3-content w3-margin-top" style="max-width:100%;">
 
   <!-- The Grid -->
   <div class="w3-row-padding">
@@ -79,33 +60,6 @@
     <div class="w3-twothird">
       <div class="w3-white w3-text-grey w3-card-4">
       <div class="w3-container w3-card w3-white w3-margin-bottom">
-        <h2 class="w3-text-grey w3-padding-16"></h2>
-        <div class="w3-container">
-          <h5 class="w3-opacity"><b>Process Algorithm: </b>
-            <button class="w3-button w3-hover-black" (click)="algorithm('fcfs')"> FCFS</button>
-            <button class="w3-button w3-hover-black" (click)="algorithm('sjn')"> SJN</button>
-            <button class="w3-button w3-hover-black" (click)="algorithm('pbs')"> PBS</button>
-          </h5>
-          <hr>
-          <h5 class="w3-opacity"><b>Processors: 
-              <input type="number" name="quantity" min="1" max="4" value="1" #processor>
-          </b></h5>
-          <hr>
-          <h5 class="w3-opacity"><b>Threads: 
-              <input type="number" name="quantity" min="1" max="4" value="1" #threads> 
-          </b></h5>
-          <hr>
-          <h5 class="w3-opacity"><b>Speed: 
-              <input type="range" min="1" max="4" value="1" #speed>
-          </b></h5>
-          <hr>
-          <h5 class="w3-opacity"><b>Paging Algorithm: </b>
-            <button class="w3-button w3-hover-black" (click)="setPagingAlgorithm('fcfs')"> FCFS</button>
-            <button class="w3-button w3-hover-black" (click)="setPagingAlgorithm('opt')"> OPT</button>
-          </h5>
-        </div>
-      </div>
-      <div class="w3-container w3-card w3-white w3-margin-bottom">
         <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Resources</h2>
         <div class="w3-container">
           <app-table-resource [resources]="resources"></app-table-resource>
@@ -120,13 +74,6 @@
           </div>
         </div>
       <div class="w3-container w3-card w3-white w3-margin-bottom">
-        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Frames</h2>
-        <div class="w3-container">
-          <app-table-frames [frames] = "frames"></app-table-frames>
-          <hr>
-        </div>
-      </div>
-      <div class="w3-container w3-card w3-white w3-margin-bottom">
         <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Finished</h2>
         <div class="w3-container">
           <div class="w3-container">
@@ -138,6 +85,47 @@
     <!-- End Right Column -->
     </div>
   </div>
+  <div class="w3-twothird">
+    <div class="w3-white w3-text-grey w3-card-4">
+    <div class="w3-container w3-card w3-white w3-margin-bottom">
+      <h2 class="w3-text-grey w3-padding-16"></h2>
+      <div class="w3-container">
+          <p class="w3-opacity"><b>Process Algorithm: </b>
+            <button class="w3-button w3-hover-black" (click)="algorithm('fcfs')"> FCFS</button>
+            <button class="w3-button w3-hover-black" (click)="algorithm('sjn')"> SJN</button>
+            <button class="w3-button w3-hover-black" (click)="algorithm('pbs')"> PBS</button>
+          </p>
+          <hr>
+          <p class="w3-opacity"><b>Processors: 
+              <input type="number" name="quantity" min="1" max="4" value="1" #processor>
+          </b></p>
+          <hr>
+          <p class="w3-opacity"><b>Threads: 
+              <input type="number" name="quantity" min="1" max="4" value="1" #threads> 
+          </b></p>
+          <hr>
+          <p class="w3-opacity"><b>Speed: 
+              <input type="range" min="1" max="4" value="1" #speed>
+          </b></p>
+          <hr>
+          <p class="w3-opacity"><b>Paging Algorithm: </b>
+            <button class="w3-button w3-hover-black" (click)="setPagingAlgorithm('fcfs')"> FCFS</button>
+            <button class="w3-button w3-hover-black" (click)="setPagingAlgorithm('opt')"> OPT</button>
+          </p>
+        </div>
+    </div>
+    <div class="w3-container w3-card w3-white w3-margin-bottom">
+      <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Frames</h2>
+      <div class="w3-container">
+        <app-table-frames [frames] = "frames"></app-table-frames>
+        <hr>
+      </div>
+    </div>
+  <!-- End Right Column -->
+  </div>
+</div>
+
+
   <!-- End Grid -->
   </div>
   <!-- End Page Container -->
