@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { TableComponent } from './table/table.component';
 import { ProgressbarComponent } from './progressbar/progressbar.component';
 import { TableResourceComponent } from './table-resource/table-resource.component';
+import { TableFramesComponent } from './table-frames/table-frames.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { TableResourceComponent } from './table-resource/table-resource.componen
     TableComponent,
     ProgressbarComponent,
     TableResourceComponent,
+    TableFramesComponent,
   ],
   imports: [
     BrowserModule,

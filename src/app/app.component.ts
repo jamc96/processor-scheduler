@@ -15,23 +15,27 @@ export class AppComponent {
   process_finish: Process[] = [];
   process_waiting: Process[] = [];
   process: Process[] = [];
+  resources: Resource[] = [];
   time: number = 0;
   r_time: number = 0;
   progress: number = 0;
   current_p: string = 'n/a';
-  resources: Resource[] = [];
   frames: Frame[] = [
     { id: 'frame_0', resource: '' },
     { id: 'frame_1', resource: '' },
     { id: 'frame_2', resource: '' },
   ];
   // default methods
-  addProcess(name: string, execute_t: number = 10, priority: number = 1){
+  addProcess(){
+    const name = "process_" + this.process_exec.length.toString();
+    const execute_t = Math.floor(Math.random() * 10) + 1;
+    const priority = Math.floor(Math.random() * 10) + 1;
+    const selectedResource = this.selectRandomResources();
     if (this.process_exec.length){
       var next = this.process_exec.length;
-      this.process_exec.push({id: name,execute_t: execute_t,arrival_t: next,priority:priority})
+      this.process_exec.push({id: name,execute_t: execute_t,arrival_t: next,priority:priority, resource: selectedResource})
     }else {
-      this.process_exec.push({id: name,execute_t: execute_t,arrival_t: 0,priority:priority});
+      this.process_exec.push({id: name,execute_t: execute_t,arrival_t: 0,priority:priority, resource: selectedResource});
     }
     return false;
   }
@@ -99,13 +103,21 @@ export class AppComponent {
     ret += "" + secs;
     return ret;
   }
-  addResource(expropriative: boolean, allowedUsages?: number): Resource {
-    allowedUsages = (expropriative || allowedUsages == undefined) ? 1 : allowedUsages;
+  addResource() : Resource {
+    const name = "resource_" + this.resources.length.toString();    
+    const expropriative = Math.floor(Math.random() * 2) + 1 == 1
+    const maxUsages = expropriative ? 1 : Math.floor(Math.random() * 3) + 1;
 
-    const name = this.resources.length.toString();
-    const newResource = new Resource(name, expropriative, allowedUsages);
+    const newResource = { name: name, expropriative: expropriative, maxUsages: maxUsages };
     this.resources.push(newResource);
 
     return newResource;
+  }
+  private selectRandomResources(): string {
+    if (this.resources.length == 0) {
+      return "";
+    }
+
+    return this.resources[Math.floor(Math.random() * (this.resources.length - 1))].name;
   }
 }
