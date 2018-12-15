@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Process } from './Process';
 import { Resource } from './Resource';
+import { Frame } from './Frame';
 
 @Component({
   selector: 'app-root',
@@ -14,22 +15,23 @@ export class AppComponent {
   process_finish: Process[] = [];
   process_waiting: Process[] = [];
   process: Process[] = [];
-  resources: Resource[] = [];
   time: number = 0;
   r_time: number = 0;
   progress: number = 0;
   current_p: string = 'n/a';
+  resources: Resource[] = [];
+  frames: Frame[] = [
+    { id: 'frame_0', resource: '' },
+    { id: 'frame_1', resource: '' },
+    { id: 'frame_2', resource: '' },
+  ];
   // default methods
-  addProcess(){
-    const name = "process_" + this.process_exec.length.toString();
-    const execute_t = Math.floor(Math.random() * 100) + 10;
-    const priority = Math.floor(Math.random() * 10) + 1;
-    const selectedResource = this.selectRandomResources();
+  addProcess(name: string, execute_t: number = 10, priority: number = 1){
     if (this.process_exec.length){
       var next = this.process_exec.length;
-      this.process_exec.push({id: name,execute_t: execute_t,arrival_t: next,priority:priority, resource: selectedResource})
+      this.process_exec.push({id: name,execute_t: execute_t,arrival_t: next,priority:priority})
     }else {
-      this.process_exec.push({id: name,execute_t: execute_t,arrival_t: 0,priority:priority, resource: selectedResource});
+      this.process_exec.push({id: name,execute_t: execute_t,arrival_t: 0,priority:priority});
     }
     return false;
   }
@@ -97,22 +99,13 @@ export class AppComponent {
     ret += "" + secs;
     return ret;
   }
-  addResource() : Resource {
-    const name = "resource_" + this.resources.length.toString();    
-    const expropriative = Math.floor(Math.random() * 2) + 1 == 1
-    const maxUsages = expropriative ? 1 : Math.floor(Math.random() * 3) + 1;
+  addResource(expropriative: boolean, allowedUsages?: number): Resource {
+    allowedUsages = (expropriative || allowedUsages == undefined) ? 1 : allowedUsages;
 
-    const newResource = { name: name, expropriative: expropriative, maxUsages: maxUsages };
+    const name = this.resources.length.toString();
+    const newResource = new Resource(name, expropriative, allowedUsages);
     this.resources.push(newResource);
 
     return newResource;
-  }
-  private selectRandomResources(): string {
-    if (this.resources.length == 0) {
-      return "";
-    }
-
-    console.log()
-    return this.resources[Math.floor(Math.random() * (this.resources.length - 1))].name;
   }
 }
