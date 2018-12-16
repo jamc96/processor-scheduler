@@ -27,7 +27,7 @@ export class AppComponent {
     { id: 'frame_2', resource: '' },
   ];
   // default methods
-  addProcess(resource: string){
+  addProcess(){
     const name = "process_" + this.process_exec.length.toString();
     const execute_t = Math.floor(Math.random() * 10) + 1;
     const priority = Math.floor(Math.random() * 10) + 1;
@@ -112,7 +112,7 @@ export class AppComponent {
         } 
       }
 
-      if (markedResources.length) {
+      if (markedResources.length > 0) {
         const farthestResource = markedResources[markedResources.length - 1];
         const frame = this.frames.find((frame) => frame.resource == farthestResource);
         if (frame) {
@@ -121,6 +121,30 @@ export class AppComponent {
       } else {
         this.frames[0].resource = nextResource;
       }
+      return;
+    }
+
+    if (this.pagingAlgorithm == "lru") {
+      const markedResources: string[] = [];
+      for (let process of this.process_finish) {
+        if (this.frames.find((frame) => frame.resource == process.resource)) {
+          const index = markedResources.indexOf(process.resource);
+          if (index >= 0) {
+            markedResources.splice(index, 1);
+          }
+          markedResources.push(process.resource);
+        } 
+      }
+
+      if (markedResources.length > 0) {
+        const farthestResource = markedResources[0];
+        const frame = this.frames.find((frame) => frame.resource == farthestResource);
+        if (frame) {
+          frame.resource = nextResource;
+        }
+      } else {
+        this.frames[0].resource = nextResource;
+      } 
     }
   }
   private findNextUpdatableFrame() {
