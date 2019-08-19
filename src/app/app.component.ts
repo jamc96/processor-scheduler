@@ -29,7 +29,7 @@ export class AppComponent {
   // default methods
   addProcess(){
     const name = "process_" + this.process_exec.length.toString();
-    const execute_t = Math.floor(Math.random() * 10) + 1;
+    const execute_t = Math.floor(Math.random() * 100) + 1;
     const priority = Math.floor(Math.random() * 10) + 1;
     const selectedResource = this.selectRandomResources();
     if (this.process_exec.length){
